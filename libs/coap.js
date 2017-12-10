@@ -1,4 +1,6 @@
-var coap = require('coap')
+var coap = require('coap'),
+    bl = require('bl')
+
 
 module.exports = {
     getData: function (req, res, ip) {
