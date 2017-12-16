@@ -18,7 +18,7 @@ setTimeout(function(){
 res.status(404).end(JSON.stringify({code : '404' , status: 'Sensor not exsited'}));
 	check = true;
 }
-},5000)
+},10000)
 
     }
 }

@@ -10,11 +10,12 @@ module.exports = {
 var check = false;
             req.on('response', function (re) {
                 if (!check && re.payload) {
-                    res.end(re.payload)
+		res.pipe(bl(function (err, data) {}))
+let data = re.payload.toString().split(';')
+                    res.end('Light: ' + data[0] + '<br>' + 'Temperature: ' + data[1] + '&deg C')
                     check = true;
                 } else res.status(404).end(JSON.stringify({ code: '404', status: 'Sensor not exsited' }));
-                res.pipe(bl(function (err, data) {
-                }))
+                
 		//console.log(re);
             })
             req.end()
@@ -23,7 +24,7 @@ setTimeout(function () {
                     res.status(404).end(JSON.stringify({ code: '404', status: 'Sensor not exsited' }));
                     check = true;
                 }
-            }, 5000)
+            }, 10000)
         })
     }
 }
